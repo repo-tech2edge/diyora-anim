@@ -6,79 +6,106 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diyora Nxt</title>
-    <style>       
+    <style>
+        :root {
+            --anim-pad: 130px;
+            --anim-width: 800px;
+        }
+
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+
+        .anyWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .anime-demo {
-            position: relative;    
-            background-image:url(Illustration-without-lines-and-arrows.png);
-            background-repeat:no-repeat;
-            background-size:contain;
-            background-position:center;
-            }
-        .square {  
-            position: absolute;                           
+            position: relative;
+            background-image: url(Illustration-without-lines-and-arrows.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: var(--anim-width);
+            padding: var(--anim-pad);
+        }
+
+        .square {
+            position: absolute;
             pointer-events: none;
-            display: inline-block;           
-            opacity: 1;           
+            display: inline-block;
+            opacity: 1;
             width: 0;
             height: 0;
             border-top: 4px solid transparent;
             border-left: 8px solid #fff;
-            border-bottom: 4px solid transparent;  
+            border-bottom: 4px solid transparent;
             top: 126px;
-            left: 128px;  
+            left: 128px;
             display: none;
-          
+
+        }
+
+        @media (max-width: 576px) {
+
+            /* apply styles for small screens (e.g. phones) */
+            .anime-demo {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 577px) and (max-width: 768px) {
+
+            /* apply styles for medium screens (e.g. tablets in portrait mode) */
+            .anime-demo {
+                width: 100%;
+            }
         }
     </style>
 </head>
-<body style="background-color: rgb(88, 57, 57);">
-    <div class="anime-demo"  style="width:400px;padding: 130px; ">
-        <svg width="100%" height="100%" viewBox="0 0 1300 800"> 
-                <path id="d" class="h" d="M92.8,310.40000000000003L3.8,362.3L273.9,533.4L401.9,465.3" 
-                    stroke="white" 
-                    stroke-width="5" 
-                    fill="none"
-                    stroke-dasharray="5,5"/>
-                <path id="e" class="h" d="M444.79999999999995,506.4L355.79999999999995,558.3L625.9,729.4L753.9,661.3"  
-                    stroke="white" 
-                    stroke-width="5" 
-                    fill="none"
-                    stroke-dasharray="5,5"/>
-                <path id="f" class="h" d="m696.6,258.2l134.4-78.8L531.5,2.3l-85.3,49.1"  
-                    stroke="white" 
-                    stroke-width="5" 
-                    fill="none"
-                    stroke-dasharray="5,5"/>
-                <path id="g" class="h" d="m1046.6,466.2l134.4-78.8-299.5-177.1-85.3,49.1"  
-                    stroke="white" 
-                    stroke-width="5" 
-                    fill="none"
-                    stroke-dasharray="5,5"/>
-           
-        </svg>           
-        <div class="square first"  ></div>
-        <div class="square second" ></div>
-        <div class="square third"  ></div>
-        <div class="square fourth" ></div>
+
+<body style="background-color: rgb(88, 57, 57);margin: 20px auto;">
+    <div class="anyWrapper">
+        <div class="anime-demo">
+            <svg width="100%" height="100%" viewBox="0 0 1300 800">
+                <path id="d" class="h" d="M92.8,310.40000000000003L3.8,362.3L273.9,533.4L401.9,465.3" stroke="white"
+                    stroke-width="5" fill="none" stroke-dasharray="5,5" />
+                <path id="e" class="h" d="M444.79999999999995,506.4L355.79999999999995,558.3L625.9,729.4L753.9,661.3"
+                    stroke="white" stroke-width="5" fill="none" stroke-dasharray="5,5" />
+                <path id="f" class="h" d="m696.6,258.2l134.4-78.8L531.5,2.3l-85.3,49.1" stroke="white" stroke-width="5"
+                    fill="none" stroke-dasharray="5,5" />
+                <path id="g" class="h" d="m1046.6,466.2l134.4-78.8-299.5-177.1-85.3,49.1" stroke="white"
+                    stroke-width="5" fill="none" stroke-dasharray="5,5" />
+
+            </svg>
+            <div class="square first"></div>
+            <div class="square second"></div>
+            <div class="square third"></div>
+            <div class="square fourth"></div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
-        let count=[0,0,0,0];
-        let index=0;
-        [['path#d','.first'],['path#e','.second'],['path#f','.third'],['path#g','.fourth']].forEach(element => {
-          setTimeout(()=>{
-            let  path = anime.path(element[0]);
-            let  motionPath = anime({
-                targets: element[1],
-                translateX: path('x'),
-                translateY: path('y'),
-                rotate: path('angle'),
-                easing: 'linear',        
-                duration: 10000,                
-                loop: true
-            });
-            document.querySelector(element[1]).style.display='inline-block';
-          },count[index++]);
+        let count = [0, 0, 0, 0];
+        let index = 0;
+        [['path#d', '.first'], ['path#e', '.second'], ['path#f', '.third'], ['path#g', '.fourth']].forEach(element => {
+            setTimeout(() => {
+                let path = anime.path(element[0]);
+                let motionPath = anime({
+                    targets: element[1],
+                    translateX: path('x'),
+                    translateY: path('y'),
+                    rotate: path('angle'),
+                    easing: 'linear',
+                    duration: 10000,
+                    loop: true
+                });
+                document.querySelector(element[1]).style.display = 'inline-block';
+            }, count[index++]);
         });      
     </script>
 </body>
