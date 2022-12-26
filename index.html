@@ -34,7 +34,7 @@
             padding: var(--anim-pad);
         }
 
-        .square {
+        .tri {
             position: absolute;
             pointer-events: none;
             display: inline-block;
@@ -55,7 +55,20 @@
             /* apply styles for small screens (e.g. phones) */
             .anime-demo {
                 width: 100%;
+                padding: 50px;
             }
+            .tri {
+                top:47px;
+                left: 48px;
+                border-top: 3px solid transparent;
+                border-left: 6px solid #fff;
+                border-bottom: 3px solid transparent;
+            }
+
+            .asvg{
+                stroke-width: 20px;
+            }
+
         }
 
         @media (min-width: 577px) and (max-width: 768px) {
@@ -71,7 +84,7 @@
 <body style="background-color: rgb(88, 57, 57);margin: 20px auto;">
     <div class="anyWrapper">
         <div class="anime-demo">
-            <svg width="100%" height="100%" viewBox="0 0 1300 800">
+            <svg class="asvg" width="100%" height="100%" viewBox="0 0 1300 800">
                 <path id="d" class="h" d="M92.8,310.40000000000003L3.8,362.3L273.9,533.4L401.9,465.3" stroke="white"
                     stroke-width="5" fill="none" stroke-dasharray="5,5" />
                 <path id="e" class="h" d="M444.79999999999995,506.4L355.79999999999995,558.3L625.9,729.4L753.9,661.3"
@@ -82,10 +95,10 @@
                     stroke-width="5" fill="none" stroke-dasharray="5,5" />
 
             </svg>
-            <div class="square first"></div>
-            <div class="square second"></div>
-            <div class="square third"></div>
-            <div class="square fourth"></div>
+            <div class="tri first"></div>
+            <div class="tri second"></div>
+            <div class="tri third"></div>
+            <div class="tri fourth"></div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
